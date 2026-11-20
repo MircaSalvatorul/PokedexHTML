@@ -1,0 +1,20 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch@sha256:72fe2fc84be8295906b8efca020b46c58ed45c8da60cd9b8b49e1991e38e89a4
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+    ports:
+      - "${OPENSEARCH_PORT}:9200"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards@sha256:70fb0a6563f204f391c444329287ce7ac50dbb7b99a43307c047de1fcfb9c658
+    ports:
+      - "${DASHBOARDS_PORT}:5601"
+    depends_on:
+      - opensearch
+
+volumes:
+  opensearch-data:
