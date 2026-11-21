@@ -1,6 +1,6 @@
 # Front door from Lab 3: nginx terminates TLS in front of OpenSearch Dashboards.
 # Pinned by tag and digest, so the build never floats.
-FROM nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+FROM nginx:stable-alpine@sha256:caf4e1e032a20f9c3c5e28fc7f25ffd768ad8677b4975c54193075997b3a97e3
 
 # Site config only. Certificates stay out of the image and are mounted at runtime
 # from certs/ (git-ignored), exactly as in compose.yaml.
